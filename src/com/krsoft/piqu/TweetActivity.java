@@ -1,15 +1,13 @@
 package com.krsoft.piqu;
 
+import java.util.ArrayList;
+
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,40 +16,35 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class TweetActivity extends Activity {
+public class TweetActivity extends Activity implements ResultsListener {
 
 	private Button tweetButton;
 	private Twitter mTwitter;
 	private OnClickListener tweetButtonListener = new OnClickListener() {
 
 		public void onClick(View v) {
-			try {
-				SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
-						MODE_PRIVATE);
-				String accessToken = pref.getString(Constants.PREF_KEY_ACCESS_TOKEN,
-						null);
-				String accessTokenSecret = pref.getString(
-						Constants.PREF_KEY_ACCESS_TOKEN_SECRET, null);
-				ConfigurationBuilder confbuilder = new ConfigurationBuilder();
-				Configuration conf = confbuilder
-						.setOAuthConsumerKey(Constants.CONSUMER_KEY)
-						.setOAuthConsumerSecret(Constants.CONSUMER_SECRET).build();
-				mTwitter = new TwitterFactory(conf).getInstance();
-				mTwitter.setOAuthAccessToken(new AccessToken(accessToken,
-						accessTokenSecret));
-				EditText statusText = (EditText)findViewById(R.id.tweetEditText);
-	            String status = statusText.getText().toString();
-				mTwitter.updateStatus(status);
-				Toast.makeText(TweetActivity.this, "tweeted", Toast.LENGTH_SHORT).show();
-                statusText.setText(null);
-    			Intent twitterFeedActivityIntent = new Intent(TweetActivity.this, TwitterFeedActivity.class);
-    			startActivity(twitterFeedActivityIntent);
-			} catch (TwitterException e) {
-				e.printStackTrace();
-			}
-
+			EditText statusText = (EditText) findViewById(R.id.tweetEditText);
+			String tweetText = statusText.getText().toString();
+			SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
+					MODE_PRIVATE);
+			String accessToken = pref.getString(
+					Constants.PREF_KEY_ACCESS_TOKEN, null);
+			String accessTokenSecret = pref.getString(
+					Constants.PREF_KEY_ACCESS_TOKEN_SECRET, null);
+			ArrayList<String> params = new ArrayList<String>();
+			params.add(accessToken);
+			params.add(accessTokenSecret);
+			params.add(tweetText);
+//			TweetActivityTask tweetActivityTask = new TweetActivityTask();
+//			tweetActivityTask.setOnResultsListener(this);
+			new TweetActivityTask().execute(params);
 		}
 	};
+	
+    public void onResultsSucceeded() {
+    	Log.i("Piqu", "got here3");
+        Toast.makeText(this, "SEHR GUT", Toast.LENGTH_LONG).show();
+    }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -66,7 +59,7 @@ public class TweetActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -79,7 +72,8 @@ public class TweetActivity extends Activity {
 			startActivity(searchActivityIntent);
 			break;
 		case R.id.menu_timeline:
-			Intent twitterFeedActivityIntent = new Intent(this, TwitterFeedActivity.class);
+			Intent twitterFeedActivityIntent = new Intent(this,
+					TwitterFeedActivity.class);
 			startActivity(twitterFeedActivityIntent);
 			break;
 		case R.id.menu_tweet:
