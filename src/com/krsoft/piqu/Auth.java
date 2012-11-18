@@ -53,10 +53,9 @@ public class Auth extends Activity {
         try {
         	Log.i("Piqu", this.getIntent().getExtras().getString("auth_url"));
         } catch(NullPointerException e){
-        	Log.i("Piqu", "NULL LOL!");
+        	
         }
 		webView.loadUrl(this.getIntent().getExtras().getString("auth_url"));
-		Log.i("Piqu", "past this");
 
 	}
 
