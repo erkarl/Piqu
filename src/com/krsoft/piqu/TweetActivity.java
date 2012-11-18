@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,9 +18,9 @@ import android.widget.Toast;
 public class TweetActivity extends Activity implements ResultsListener {
 
 	private Button tweetButton;
-	private Twitter mTwitter;
 	private OnClickListener tweetButtonListener = new OnClickListener() {
 
+		@SuppressWarnings("unchecked")
 		public void onClick(View v) {
 			EditText statusText = (EditText) findViewById(R.id.tweetEditText);
 			String tweetText = statusText.getText().toString();
@@ -35,16 +34,11 @@ public class TweetActivity extends Activity implements ResultsListener {
 			params.add(accessToken);
 			params.add(accessTokenSecret);
 			params.add(tweetText);
-//			TweetActivityTask tweetActivityTask = new TweetActivityTask();
-//			tweetActivityTask.setOnResultsListener(this);
-			new TweetActivityTask().execute(params);
+			TweetActivityTask tweetActivityTask = new TweetActivityTask();
+			tweetActivityTask.setOnResultsListener(TweetActivity.this);
+			tweetActivityTask.execute(params);
 		}
 	};
-	
-    public void onResultsSucceeded() {
-    	Log.i("Piqu", "got here3");
-        Toast.makeText(this, "SEHR GUT", Toast.LENGTH_LONG).show();
-    }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +76,13 @@ public class TweetActivity extends Activity implements ResultsListener {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void onResultsSucceeded() {
+        Toast.makeText(this, "Tweeted", Toast.LENGTH_LONG).show();
+		Intent twitterFeedActivityIntent = new Intent(this,
+				TwitterFeedActivity.class);
+		startActivity(twitterFeedActivityIntent);
 	}
 
 }

@@ -9,18 +9,15 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View.OnClickListener;
-import android.widget.Toast;
 
 public class TweetActivityTask extends AsyncTask<ArrayList<String>, Void, Void> {
 
 	private Twitter mTwitter;
-	ResultsListener listener;
+    ResultsListener listener;
 
-	public void setOnResultsListener(ResultsListener onClickListener) {
-		this.listener = onClickListener;
-	}
+    public void setOnResultsListener(ResultsListener listener) {
+        this.listener = listener;
+    }
 
 	@Override
 	protected Void doInBackground(ArrayList<String>... params) {
@@ -45,14 +42,7 @@ public class TweetActivityTask extends AsyncTask<ArrayList<String>, Void, Void> 
 
 	@Override
 	protected void onPostExecute(Void result) {
-		// Intent twitterFeedActivityIntent = new Intent(
-		// TweetActivity.this, TwitterFeedActivity.class);
-		// Context.startActivity(twitterFeedActivityIntent);
-		// Context.startActivity(new Intent(context,
-		// TwitterFeedActivity.class));
-//		Log.i("Piqu", "got here");
-//		listener.onResultsSucceeded();
-//		Log.i("Piqu", "got here2");
+		listener.onResultsSucceeded();
 		super.onPostExecute(result);
 	}
 
