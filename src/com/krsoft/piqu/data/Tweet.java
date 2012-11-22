@@ -1,4 +1,4 @@
-package com.krsoft.piqu;
+package com.krsoft.piqu.data;
 
 public class Tweet {
 	public String author;
@@ -16,6 +16,5 @@ public class Tweet {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
+
 }

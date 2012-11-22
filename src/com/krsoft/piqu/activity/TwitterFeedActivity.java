@@ -15,9 +15,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.krsoft.piqu.R;
-import com.krsoft.piqu.Tweet;
 import com.krsoft.piqu.adapter.TweetListAdaptor;
 import com.krsoft.piqu.data.Constants;
+import com.krsoft.piqu.data.Tweet;
 
 public class TwitterFeedActivity extends BaseListActivity {
 	private Twitter mTwitter;

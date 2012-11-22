@@ -2,8 +2,8 @@ package com.krsoft.piqu.network;
 
 import java.util.ArrayList;
 
-import com.krsoft.piqu.ResultsListener;
 import com.krsoft.piqu.data.Constants;
+import com.krsoft.piqu.util.ResultsListener;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;

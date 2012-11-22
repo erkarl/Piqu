@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.krsoft.piqu.R;
-import com.krsoft.piqu.Tweet;
+import com.krsoft.piqu.data.Tweet;
 
 public class TweetListAdaptor extends ArrayAdapter<Tweet> {
 	private ArrayList<Tweet> tweets;

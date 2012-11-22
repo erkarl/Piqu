@@ -12,9 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.krsoft.piqu.R;
-import com.krsoft.piqu.ResultsListener;
 import com.krsoft.piqu.data.Constants;
 import com.krsoft.piqu.network.TweetActivityTask;
+import com.krsoft.piqu.util.ResultsListener;
 
 public class TweetActivity extends BaseActivity implements ResultsListener {
 
