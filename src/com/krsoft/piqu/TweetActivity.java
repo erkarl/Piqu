@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class TweetActivity extends Activity implements ResultsListener {
+public class TweetActivity extends BaseActivity implements ResultsListener {
 
 	private Button tweetButton;
 	private OnClickListener tweetButtonListener = new OnClickListener() {
@@ -46,36 +46,6 @@ public class TweetActivity extends Activity implements ResultsListener {
 		setContentView(R.layout.activity_tweet);
 		tweetButton = (Button) findViewById(R.id.submitTweetButton);
 		tweetButton.setOnClickListener(tweetButtonListener);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_logout:
-			Intent logoutActivityIntent = new Intent(this, LogoutActivity.class);
-			startActivity(logoutActivityIntent);
-			break;
-		case R.id.menu_search:
-			Intent searchActivityIntent = new Intent(this, SearchActivity.class);
-			startActivity(searchActivityIntent);
-			break;
-		case R.id.menu_timeline:
-			Intent twitterFeedActivityIntent = new Intent(this,
-					TwitterFeedActivity.class);
-			startActivity(twitterFeedActivityIntent);
-			break;
-		case R.id.menu_tweet:
-			Intent tweetActivityIntent = new Intent(this, TweetActivity.class);
-			startActivity(tweetActivityIntent);
-			break;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	public void onResultsSucceeded() {

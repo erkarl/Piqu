@@ -7,18 +7,14 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
 	private Twitter mTwitter;
 	private RequestToken mRequestToken;
@@ -54,12 +50,6 @@ public class MainActivity extends Activity {
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-
 	public void logOut() {
 		SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
 				MODE_PRIVATE);
@@ -74,30 +64,6 @@ public class MainActivity extends Activity {
 
 		Toast.makeText(MainActivity.this, "unauthorized", Toast.LENGTH_SHORT)
 				.show();
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_logout:
-			Intent logoutActivityIntent = new Intent(this, LogoutActivity.class);
-			startActivity(logoutActivityIntent);
-			break;
-		case R.id.menu_search:
-			Intent searchActivityIntent = new Intent(this, SearchActivity.class);
-			startActivity(searchActivityIntent);
-			break;
-		case R.id.menu_timeline:
-			Intent twitterFeedActivityIntent = new Intent(this,
-					TwitterFeedActivity.class);
-			startActivity(twitterFeedActivityIntent);
-			break;
-		case R.id.menu_tweet:
-			Intent tweetActivityIntent = new Intent(this, TweetActivity.class);
-			startActivity(tweetActivityIntent);
-			break;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode,
