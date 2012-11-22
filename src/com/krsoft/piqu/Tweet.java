@@ -1,8 +1,8 @@
 package com.krsoft.piqu;
 
 public class Tweet {
-	String author;
-	String content;
+	public String author;
+	public String content;
 	
 	public String getAuthor() {
 		return author;
