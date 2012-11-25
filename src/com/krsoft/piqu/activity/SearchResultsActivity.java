@@ -50,7 +50,7 @@ public class SearchResultsActivity extends BaseListActivity {
 					QueryResult result = mTwitter.search(query);
 					for (twitter4j.Tweet tweet : result.getTweets()) {
 						Tweet resultTweet = new Tweet();
-						resultTweet.author = "@" + tweet.getFromUser();
+						resultTweet.author = getString(R.string.beforeTweetText) + tweet.getFromUser();
 						resultTweet.content = tweet.getText();
 						searchItems.add(resultTweet);
 						

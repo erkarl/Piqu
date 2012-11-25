@@ -45,7 +45,7 @@ public class TwitterFeedActivity extends BaseListActivity {
 			List<Status> statuses = mTwitter.getHomeTimeline();
 			for (Status status2 : statuses) {
 				Tweet tweet = new Tweet();
-				tweet.author = "@" + status2.getUser().getName();
+				tweet.author = getString(R.string.beforeTweetText) + status2.getUser().getName();
 				tweet.content = status2.getText();
 				items.add(tweet);
 			}
