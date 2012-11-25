@@ -15,7 +15,6 @@ import android.os.AsyncTask;
 
 public class TweetActivityTask extends AsyncTask<ArrayList<String>, Void, Void> {
 
-	private Twitter mTwitter;
     ResultsListener listener;
 
     public void setOnResultsListener(ResultsListener listener) {
@@ -32,6 +31,7 @@ public class TweetActivityTask extends AsyncTask<ArrayList<String>, Void, Void> 
 		Configuration conf = confbuilder
 				.setOAuthConsumerKey(Constants.CONSUMER_KEY)
 				.setOAuthConsumerSecret(Constants.CONSUMER_SECRET).build();
+		Twitter mTwitter;
 		mTwitter = new TwitterFactory(conf).getInstance();
 		mTwitter.setOAuthAccessToken(new AccessToken(accessToken,
 				accessTokenSecret));

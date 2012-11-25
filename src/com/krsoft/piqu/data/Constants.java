@@ -4,7 +4,7 @@ public class Constants {
 	
     public static final String CONSUMER_KEY = "HoMPrtzYiGQ7AOZfaxweA";
     public static final String CONSUMER_SECRET = "v1OWylJPMtrSu8ndlIduESOzIZAN5S1dD1cQgESUBU";
-    public static final String CALLBACK_URL = "http://www.karlranna.com";
+    public static final String CALLBACK_URL = "http://www.karlranna.com/piqu";
 
     public static final String IEXTRA_AUTH_URL = "https://api.twitter.com/oauth/authorize";
     public static final String IEXTRA_OAUTH_VERIFIER = "oauth_verifier";
