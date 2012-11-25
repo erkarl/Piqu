@@ -9,5 +9,6 @@
     <string name="menu_logout">Logout</string>
     <string name="tweet">Tweet</string>
     <string name="search">Search</string>
+    <string name="emptySearch">Search query cannot be empty.</string>
 
 </resources>
