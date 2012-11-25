@@ -10,7 +10,6 @@ import twitter4j.conf.ConfigurationBuilder;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.krsoft.piqu.R;
@@ -52,22 +51,6 @@ public class MainActivity extends BaseActivity {
 
 	}
 
-	public void logOut() {
-		SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
-				MODE_PRIVATE);
-		SharedPreferences.Editor editor = pref.edit();
-		editor.remove(Constants.PREF_KEY_ACCESS_TOKEN);
-		editor.remove(Constants.PREF_KEY_ACCESS_TOKEN_SECRET);
-		editor.commit();
-
-		if (mTwitter != null) {
-			mTwitter.shutdown();
-		}
-
-		Toast.makeText(MainActivity.this, "unauthorized", Toast.LENGTH_SHORT)
-				.show();
-	}
-
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
@@ -87,8 +70,7 @@ public class MainActivity extends BaseActivity {
 					editor.putString(Constants.PREF_KEY_ACCESS_TOKEN_SECRET,
 							accessToken.getTokenSecret());
 					editor.commit();
-
-					Toast.makeText(this, "authorized", Toast.LENGTH_SHORT)
+					Toast.makeText(this, R.string.loggedIn, Toast.LENGTH_SHORT)
 							.show();
 					Intent twitterFeedActivityIntent = new Intent(this,
 							TwitterFeedActivity.class);
@@ -97,7 +79,8 @@ public class MainActivity extends BaseActivity {
 					e.printStackTrace();
 				}
 			} else if (resultCode == RESULT_CANCELED) {
-				Log.w("Piqu", "Twitter auth canceled.");
+				Toast.makeText(this, R.string.authCanceled, Toast.LENGTH_SHORT)
+				.show();
 			}
 		}
 	}

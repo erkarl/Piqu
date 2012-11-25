@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Piqu</string>
-    <string name="menu_status">Hello world!</string>
+    <string name="menu_status">Menu status</string>
     <string name="menu_tweet">Tweet</string>
     <string name="title_activity_main">Piqu</string>
     <string name="menu_search">Search</string>
@@ -12,5 +12,10 @@
     <string name="emptySearch">Search query cannot be empty.</string>
     <string name="tweetSuccess">Tweeted.</string>
     <string name="tweetFail">Tweet cannot be empty.</string>
+    <string name="loggedOut">Logged out.</string>
+    <string name="loggedIn">Logged in.</string>
+    <string name="authCanceled">Auth canceled.</string>
+    <string name="beforeTweetText">/@</string>
+    
 
 </resources>

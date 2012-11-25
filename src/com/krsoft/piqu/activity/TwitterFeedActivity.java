@@ -12,7 +12,6 @@ import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.krsoft.piqu.R;
 import com.krsoft.piqu.adapter.TweetListAdaptor;
@@ -45,13 +44,9 @@ public class TwitterFeedActivity extends BaseListActivity {
 		try {
 			List<Status> statuses = mTwitter.getHomeTimeline();
 			for (Status status2 : statuses) {
-				// listAdapter.add(status2.getText());
 				Tweet tweet = new Tweet();
-				Log.i("Piqu", "User: " + status2.getUser().getName());
 				tweet.author = "@" + status2.getUser().getName();
-				Log.i("Piqu", "Name: " + status2.getText());
 				tweet.content = status2.getText();
-				Log.i("Piqu", "Adding: " + tweet.getAuthor() + tweet.getContent());
 				items.add(tweet);
 			}
 		} catch (TwitterException te) {

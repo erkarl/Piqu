@@ -1,5 +1,6 @@
 package com.krsoft.piqu.activity;
 
+import com.krsoft.piqu.R;
 import com.krsoft.piqu.data.Constants;
 
 import android.app.Activity;
@@ -18,9 +19,7 @@ public class LogoutActivity extends Activity {
 		editor.remove(Constants.PREF_KEY_ACCESS_TOKEN);
 		editor.remove(Constants.PREF_KEY_ACCESS_TOKEN_SECRET);
 		editor.commit();
-
-		Toast.makeText(this, "unauthorized", Toast.LENGTH_SHORT)
-				.show();
+		Toast.makeText(this, R.string.loggedOut, Toast.LENGTH_SHORT).show();
 		Intent mainActivityIntent = new Intent(this, MainActivity.class);
 		startActivity(mainActivityIntent);
 	}

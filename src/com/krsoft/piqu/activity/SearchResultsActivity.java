@@ -12,7 +12,6 @@ import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.krsoft.piqu.R;
 import com.krsoft.piqu.adapter.TweetListAdaptor;
@@ -48,12 +47,9 @@ public class SearchResultsActivity extends BaseListActivity {
 					mTwitter.setOAuthAccessToken(new AccessToken(accessToken,
 							accessTokenSecret));
 					Query query = new Query(searchQuery);
-					Log.i("Piqu", "Searching: " + searchQuery);
 					QueryResult result = mTwitter.search(query);
 					for (twitter4j.Tweet tweet : result.getTweets()) {
 						Tweet resultTweet = new Tweet();
-						Log.i("Piqu",
-								(tweet.getFromUser() + ":" + tweet.getText()));
 						resultTweet.author = "@" + tweet.getFromUser();
 						resultTweet.content = tweet.getText();
 						searchItems.add(resultTweet);
