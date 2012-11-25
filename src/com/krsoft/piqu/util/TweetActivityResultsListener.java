@@ -1,5 +1,5 @@
 package com.krsoft.piqu.util;
 
-public interface ResultsListener {
+public interface TweetActivityResultsListener {
     public void onResultsSucceeded();
 }

@@ -99,7 +99,7 @@ public class MainActivity extends BaseActivity {
 				try {
 					mRequestToken = mTwitter
 							.getOAuthRequestToken(Constants.CALLBACK_URL);
-					Intent intent = new Intent(MainActivity.this, Auth.class);
+					Intent intent = new Intent(MainActivity.this, AuthActivity.class);
 					intent.putExtra("auth_url",
 							mRequestToken.getAuthorizationURL());
 					startActivityForResult(intent, Constants.REQ_CODE_START_AUTH);

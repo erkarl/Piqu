@@ -14,9 +14,9 @@ import android.widget.Toast;
 import com.krsoft.piqu.R;
 import com.krsoft.piqu.data.Constants;
 import com.krsoft.piqu.network.TweetActivityTask;
-import com.krsoft.piqu.util.ResultsListener;
+import com.krsoft.piqu.util.TweetActivityResultsListener;
 
-public class TweetActivity extends BaseActivity implements ResultsListener {
+public class TweetActivity extends BaseActivity implements TweetActivityResultsListener {
 
 	private OnClickListener tweetButtonListener = new OnClickListener() {
 

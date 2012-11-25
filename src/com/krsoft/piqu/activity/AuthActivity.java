@@ -1,6 +1,5 @@
 package com.krsoft.piqu.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,7 +10,7 @@ import android.webkit.WebViewClient;
 import com.krsoft.piqu.R;
 import com.krsoft.piqu.data.Constants;
 
-public class Auth extends Activity {
+public class AuthActivity extends BaseActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -3,7 +3,7 @@ package com.krsoft.piqu.network;
 import java.util.ArrayList;
 
 import com.krsoft.piqu.data.Constants;
-import com.krsoft.piqu.util.ResultsListener;
+import com.krsoft.piqu.util.TweetActivityResultsListener;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -15,9 +15,9 @@ import android.os.AsyncTask;
 
 public class TweetActivityTask extends AsyncTask<ArrayList<String>, Void, Void> {
 
-    ResultsListener listener;
+    TweetActivityResultsListener listener;
 
-    public void setOnResultsListener(ResultsListener listener) {
+    public void setOnResultsListener(TweetActivityResultsListener listener) {
         this.listener = listener;
     }
 
