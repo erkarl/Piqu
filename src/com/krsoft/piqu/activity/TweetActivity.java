@@ -18,7 +18,6 @@ import com.krsoft.piqu.util.ResultsListener;
 
 public class TweetActivity extends BaseActivity implements ResultsListener {
 
-	private Button tweetButton;
 	private OnClickListener tweetButtonListener = new OnClickListener() {
 
 		@SuppressWarnings("unchecked")
@@ -51,6 +50,7 @@ public class TweetActivity extends BaseActivity implements ResultsListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tweet);
+		Button tweetButton;
 		tweetButton = (Button) findViewById(R.id.submitTweetButton);
 		tweetButton.setOnClickListener(tweetButtonListener);
 	}

@@ -12,8 +12,6 @@ import com.krsoft.piqu.R;
 
 public class SearchActivity extends BaseActivity {
 
-	private Button searchButton;
-
 	private OnClickListener searchButtonListener = new OnClickListener() {
 
 		public void onClick(View v) {
@@ -36,6 +34,7 @@ public class SearchActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
+		Button searchButton;
 		searchButton = (Button) findViewById(R.id.submitSearchButton);
 		searchButton.setOnClickListener(searchButtonListener);
 	}
