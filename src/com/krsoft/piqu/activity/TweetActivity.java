@@ -25,19 +25,25 @@ public class TweetActivity extends BaseActivity implements ResultsListener {
 		public void onClick(View v) {
 			EditText statusText = (EditText) findViewById(R.id.tweetEditText);
 			String tweetText = statusText.getText().toString();
-			SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
-					MODE_PRIVATE);
-			String accessToken = pref.getString(
-					Constants.PREF_KEY_ACCESS_TOKEN, null);
-			String accessTokenSecret = pref.getString(
-					Constants.PREF_KEY_ACCESS_TOKEN_SECRET, null);
-			ArrayList<String> params = new ArrayList<String>();
-			params.add(accessToken);
-			params.add(accessTokenSecret);
-			params.add(tweetText);
-			TweetActivityTask tweetActivityTask = new TweetActivityTask();
-			tweetActivityTask.setOnResultsListener(TweetActivity.this);
-			tweetActivityTask.execute(params);
+			if ("".equals(tweetText)) {
+				Toast.makeText(TweetActivity.this, R.string.tweetFail,
+						Toast.LENGTH_LONG).show();
+			} else {
+				SharedPreferences pref = getSharedPreferences(
+						Constants.PREF_NAME, MODE_PRIVATE);
+				String accessToken = pref.getString(
+						Constants.PREF_KEY_ACCESS_TOKEN, null);
+				String accessTokenSecret = pref.getString(
+						Constants.PREF_KEY_ACCESS_TOKEN_SECRET, null);
+				ArrayList<String> params = new ArrayList<String>();
+				params.add(accessToken);
+				params.add(accessTokenSecret);
+				params.add(tweetText);
+				TweetActivityTask tweetActivityTask = new TweetActivityTask();
+				tweetActivityTask.setOnResultsListener(TweetActivity.this);
+				tweetActivityTask.execute(params);
+			}
+
 		}
 	};
 
@@ -50,7 +56,7 @@ public class TweetActivity extends BaseActivity implements ResultsListener {
 	}
 
 	public void onResultsSucceeded() {
-        Toast.makeText(this, "Tweeted", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, R.string.tweetSuccess, Toast.LENGTH_LONG).show();
 		Intent twitterFeedActivityIntent = new Intent(this,
 				TwitterFeedActivity.class);
 		startActivity(twitterFeedActivityIntent);

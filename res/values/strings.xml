@@ -10,5 +10,7 @@
     <string name="tweet">Tweet</string>
     <string name="search">Search</string>
     <string name="emptySearch">Search query cannot be empty.</string>
+    <string name="tweetSuccess">Tweeted.</string>
+    <string name="tweetFail">Tweet cannot be empty.</string>
 
 </resources>
