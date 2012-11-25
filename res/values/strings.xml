@@ -16,6 +16,6 @@
     <string name="loggedIn">Logged in.</string>
     <string name="authCanceled">Auth canceled.</string>
     <string name="beforeTweetText">/@</string>
-    
-
+    <string name="notLoggedIn">Not authorized yet.</string>
+    
 </resources>

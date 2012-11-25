@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
 		String accessTokenSecret = pref.getString(
 				Constants.PREF_KEY_ACCESS_TOKEN_SECRET, null);
 		if (accessToken == null || accessTokenSecret == null) {
-			Toast.makeText(MainActivity.this, "not authorize yet",
+			Toast.makeText(MainActivity.this, R.string.notLoggedIn,
 					Toast.LENGTH_SHORT).show();
 			twitterAuth();
 		} else {
@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity {
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-		if (requestCode == 0) {
+		if (requestCode == Constants.REQ_CODE_START_AUTH) {
 			if (resultCode == RESULT_OK) {
 				AccessToken accessToken = null;
 				try {
@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity {
 					Intent intent = new Intent(MainActivity.this, Auth.class);
 					intent.putExtra("auth_url",
 							mRequestToken.getAuthorizationURL());
-					startActivityForResult(intent, 0);
+					startActivityForResult(intent, Constants.REQ_CODE_START_AUTH);
 				} catch (TwitterException e) {
 					e.printStackTrace();
 				}

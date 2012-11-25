@@ -28,6 +28,7 @@
         <activity android:name=".activity.TweetActivity"></activity>
         <activity android:name=".activity.SearchActivity"></activity>
         <activity android:name=".activity.SearchResultsActivity"></activity>
+        <activity android:name=".activity.LogoutActivity"></activity>
     </application>
 
 </manifest>

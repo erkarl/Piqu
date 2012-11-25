@@ -13,4 +13,6 @@ public class Constants {
     public static final String PREF_NAME = "com.krsoft.piqu";
     public static final String PREF_KEY_ACCESS_TOKEN = "914417527-6Dt6rmLHfhKIRhyvwIqxXTmJiLKUvNQTLxl5E2Hn";
     public static final String PREF_KEY_ACCESS_TOKEN_SECRET = "QR8OUjFNF9qGoaiZYf5euSYHLL2IfrVW5SGZaYLBc";
+    
+    public static final Integer REQ_CODE_START_AUTH = 1;
 }
