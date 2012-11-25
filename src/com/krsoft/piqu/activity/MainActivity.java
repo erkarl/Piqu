@@ -24,7 +24,6 @@ public class MainActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
 				MODE_PRIVATE);
 		String accessToken = pref.getString(Constants.PREF_KEY_ACCESS_TOKEN,
@@ -36,13 +35,6 @@ public class MainActivity extends BaseActivity {
 					Toast.LENGTH_SHORT).show();
 			twitterAuth();
 		} else {
-			ConfigurationBuilder confbuilder = new ConfigurationBuilder();
-			Configuration conf = confbuilder
-					.setOAuthConsumerKey(Constants.CONSUMER_KEY)
-					.setOAuthConsumerSecret(Constants.CONSUMER_SECRET).build();
-			mTwitter = new TwitterFactory(conf).getInstance();
-			mTwitter.setOAuthAccessToken(new AccessToken(accessToken,
-					accessTokenSecret));
 			Intent twitterFeedActivityIntent = new Intent(this,
 					TwitterFeedActivity.class);
 			startActivity(twitterFeedActivityIntent);
@@ -80,7 +72,7 @@ public class MainActivity extends BaseActivity {
 				}
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, R.string.authCanceled, Toast.LENGTH_SHORT)
-				.show();
+						.show();
 			}
 		}
 	}
@@ -99,10 +91,12 @@ public class MainActivity extends BaseActivity {
 				try {
 					mRequestToken = mTwitter
 							.getOAuthRequestToken(Constants.CALLBACK_URL);
-					Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+					Intent intent = new Intent(MainActivity.this,
+							AuthActivity.class);
 					intent.putExtra("auth_url",
 							mRequestToken.getAuthorizationURL());
-					startActivityForResult(intent, Constants.REQ_CODE_START_AUTH);
+					startActivityForResult(intent,
+							Constants.REQ_CODE_START_AUTH);
 				} catch (TwitterException e) {
 					e.printStackTrace();
 				}
