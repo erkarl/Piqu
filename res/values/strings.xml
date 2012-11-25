@@ -17,5 +17,5 @@
     <string name="authCanceled">Auth canceled.</string>
     <string name="beforeTweetText">/@</string>
     <string name="notLoggedIn">Not authorized yet.</string>
-    
+    <string name="tweetLengthFail">Tweet cannot be longer than 140 characters.</string>
 </resources>

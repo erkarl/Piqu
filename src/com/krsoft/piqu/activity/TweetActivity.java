@@ -27,7 +27,12 @@ public class TweetActivity extends BaseActivity implements TweetActivityResultsL
 			if ("".equals(tweetText)) {
 				Toast.makeText(TweetActivity.this, R.string.tweetFail,
 						Toast.LENGTH_LONG).show();
-			} else {
+			} 
+			else if (tweetText.length() > Constants.MAX_TWEET_LENGTH) {
+				Toast.makeText(TweetActivity.this, R.string.tweetLengthFail,
+						Toast.LENGTH_LONG).show();
+			}
+			else {
 				SharedPreferences pref = getSharedPreferences(
 						Constants.PREF_NAME, MODE_PRIVATE);
 				String accessToken = pref.getString(

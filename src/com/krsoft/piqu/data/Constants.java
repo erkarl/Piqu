@@ -15,4 +15,5 @@ public class Constants {
     public static final String PREF_KEY_ACCESS_TOKEN_SECRET = "QR8OUjFNF9qGoaiZYf5euSYHLL2IfrVW5SGZaYLBc";
     
     public static final Integer REQ_CODE_START_AUTH = 1;
+    public static final Integer MAX_TWEET_LENGTH = 140;
 }
