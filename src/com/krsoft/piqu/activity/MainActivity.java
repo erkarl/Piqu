@@ -1,12 +1,6 @@
 package com.krsoft.piqu.activity;
 
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationBuilder;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,10 +8,14 @@ import android.widget.Toast;
 
 import com.krsoft.piqu.R;
 import com.krsoft.piqu.data.Constants;
+import com.krsoft.piqu.data.TwitterAuthWrapper;
+import com.krsoft.piqu.network.MainActivityAfterAuthTask;
+import com.krsoft.piqu.network.MainActivityTask;
+import com.krsoft.piqu.util.MainActivityResultsListener;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements
+		MainActivityResultsListener {
 
-	private Twitter mTwitter;
 	private RequestToken mRequestToken;
 
 	@Override
@@ -35,6 +33,7 @@ public class MainActivity extends BaseActivity {
 					Toast.LENGTH_SHORT).show();
 			twitterAuth();
 		} else {
+
 			Intent twitterFeedActivityIntent = new Intent(this,
 					TwitterFeedActivity.class);
 			startActivity(twitterFeedActivityIntent);
@@ -48,28 +47,12 @@ public class MainActivity extends BaseActivity {
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (requestCode == Constants.REQ_CODE_START_AUTH) {
 			if (resultCode == RESULT_OK) {
-				AccessToken accessToken = null;
-				try {
-					String oauthVerifier = intent.getExtras().getString(
-							Constants.IEXTRA_OAUTH_VERIFIER);
-					accessToken = mTwitter.getOAuthAccessToken(mRequestToken,
-							oauthVerifier);
-					SharedPreferences pref = getSharedPreferences(
-							Constants.PREF_NAME, MODE_PRIVATE);
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putString(Constants.PREF_KEY_ACCESS_TOKEN,
-							accessToken.getToken());
-					editor.putString(Constants.PREF_KEY_ACCESS_TOKEN_SECRET,
-							accessToken.getTokenSecret());
-					editor.commit();
-					Toast.makeText(this, R.string.loggedIn, Toast.LENGTH_SHORT)
-							.show();
-					Intent twitterFeedActivityIntent = new Intent(this,
-							TwitterFeedActivity.class);
-					startActivity(twitterFeedActivityIntent);
-				} catch (TwitterException e) {
-					e.printStackTrace();
-				}
+				TwitterAuthWrapper helpParamForAsyncTask = new TwitterAuthWrapper(
+						intent.getExtras().getString(
+								Constants.IEXTRA_OAUTH_VERIFIER),
+						mRequestToken, getApplicationContext());
+				MainActivityAfterAuthTask mainActivityAfterAuthTask = new MainActivityAfterAuthTask();
+				mainActivityAfterAuthTask.execute(helpParamForAsyncTask);
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, R.string.authCanceled, Toast.LENGTH_SHORT)
 						.show();
@@ -78,31 +61,15 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void twitterAuth() {
+		MainActivityTask mainActivityTask = new MainActivityTask();
+		mainActivityTask.setOnResultsListener(MainActivity.this);
+		mainActivityTask.execute();
+	}
 
-		new Thread(new Runnable() {
-			public void run() {
-				ConfigurationBuilder confbuilder = new ConfigurationBuilder();
-				Configuration conf = confbuilder
-						.setOAuthConsumerKey(Constants.CONSUMER_KEY)
-						.setOAuthConsumerSecret(Constants.CONSUMER_SECRET)
-						.build();
-				mTwitter = new TwitterFactory(conf).getInstance();
-				mTwitter.setOAuthAccessToken(null);
-				try {
-					mRequestToken = mTwitter
-							.getOAuthRequestToken(Constants.CALLBACK_URL);
-					Intent intent = new Intent(MainActivity.this,
-							AuthActivity.class);
-					intent.putExtra("auth_url",
-							mRequestToken.getAuthorizationURL());
-					startActivityForResult(intent,
-							Constants.REQ_CODE_START_AUTH);
-				} catch (TwitterException e) {
-					e.printStackTrace();
-				}
-
-			}
-		}).start();
-
+	public void onResultsSucceeded(RequestToken result) {
+		mRequestToken = result;
+		Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+		intent.putExtra("auth_url", mRequestToken.getAuthorizationURL());
+		startActivityForResult(intent, Constants.REQ_CODE_START_AUTH);
 	}
 }
