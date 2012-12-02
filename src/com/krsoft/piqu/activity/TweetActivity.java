@@ -64,6 +64,7 @@ public class TweetActivity extends BaseActivity implements TweetActivityResultsL
 		Toast.makeText(this, R.string.tweetSuccess, Toast.LENGTH_LONG).show();
 		Intent twitterFeedActivityIntent = new Intent(this,
 				TwitterFeedActivity.class);
+		twitterFeedActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(twitterFeedActivityIntent);
 	}
 

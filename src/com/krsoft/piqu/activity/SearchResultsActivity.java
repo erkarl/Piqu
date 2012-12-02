@@ -27,7 +27,7 @@ public class SearchResultsActivity extends BaseListActivity implements SearchRes
 		ArrayList<String> params = new ArrayList<String>();
 		params.add(accessToken);
 		params.add(accessTokenSecret);
-		params.add(this.getIntent().getExtras().getString("search_query"));
+		params.add(this.getIntent().getExtras().getString(Constants.INTENT_EXTRA_SEARCH_QUERY));
 		SearchResultsActivityTask tweetActivityTask = new SearchResultsActivityTask();
 		tweetActivityTask.setOnResultsListener(SearchResultsActivity.this);
 		tweetActivityTask.execute(params);

@@ -26,4 +26,6 @@ public class Constants {
     public static final Integer ACTIONBAR_FIRST_ITEM = 0;
     public static final Integer ACTIONBAR_SECOND_ITEM = 1;
     public static final Integer ACTIONBAR_THIRD_ITEM = 2;
+    
+    public static final String INTENT_EXTRA_SEARCH_QUERY = "search_query";
 }

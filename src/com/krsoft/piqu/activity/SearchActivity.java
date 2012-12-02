@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.krsoft.piqu.R;
+import com.krsoft.piqu.data.Constants;
 
 public class SearchActivity extends BaseActivity {
 
@@ -23,7 +24,7 @@ public class SearchActivity extends BaseActivity {
 			} else {
 				Intent searchActivityResults = new Intent(SearchActivity.this,
 						SearchResultsActivity.class);
-				searchActivityResults.putExtra("search_query", searchText);
+				searchActivityResults.putExtra(Constants.INTENT_EXTRA_SEARCH_QUERY, searchText);
 				startActivity(searchActivityResults);
 			}
 

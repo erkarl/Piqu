@@ -15,10 +15,20 @@ import com.krsoft.piqu.util.TwitterFeedActivityResultsListener;
 public class TwitterFeedActivity extends BaseListActivity implements
 		TwitterFeedActivityResultsListener {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		displayTwitterFeed();
+	}
+
+	public void onResultsSucceeded(ArrayList<Tweet> result) {
+		TweetListAdaptor adaptor = new TweetListAdaptor(this,
+				R.layout.list_items, result);
+		setListAdapter(adaptor);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void displayTwitterFeed(){
 		SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
 				MODE_PRIVATE);
 		String accessToken = pref.getString(Constants.PREF_KEY_ACCESS_TOKEN,
@@ -32,10 +42,10 @@ public class TwitterFeedActivity extends BaseListActivity implements
 		tweetActivityTask.setOnResultsListener(TwitterFeedActivity.this);
 		tweetActivityTask.execute(params);
 	}
-
-	public void onResultsSucceeded(ArrayList<Tweet> result) {
-		TweetListAdaptor adaptor = new TweetListAdaptor(this,
-				R.layout.list_items, result);
-		setListAdapter(adaptor);
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		displayTwitterFeed();
 	}
 }

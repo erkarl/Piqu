@@ -60,6 +60,7 @@ public class MainActivityAfterAuthTask extends
 		.show();
 		Intent twitterFeedActivityIntent = new Intent(context.getApplicationContext(),
 				TwitterFeedActivity.class);
+		twitterFeedActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 		context.startActivity(twitterFeedActivityIntent);
 		super.onPostExecute(result);
 	}
