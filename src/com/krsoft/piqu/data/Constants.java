@@ -16,4 +16,14 @@ public class Constants {
     
     public static final Integer REQ_CODE_START_AUTH = 1;
     public static final Integer MAX_TWEET_LENGTH = 140;
+    
+    public static final Integer ACTIONBAR_TWEET = 1;
+    public static final Integer ACTIONBAR_SEARCH = 2;
+    public static final Integer ACTIONBAR_AUTH = 3;
+    public static final Integer ACTIONBAR_HOME = 4;
+    
+    public static final Integer ACTIONBAR_MAIN_GROUP = 0;
+    public static final Integer ACTIONBAR_FIRST_ITEM = 0;
+    public static final Integer ACTIONBAR_SECOND_ITEM = 1;
+    public static final Integer ACTIONBAR_THIRD_ITEM = 2;
 }

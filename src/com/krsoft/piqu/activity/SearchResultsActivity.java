@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.krsoft.piqu.R;
 import com.krsoft.piqu.adapter.TweetListAdaptor;
@@ -37,7 +36,6 @@ public class SearchResultsActivity extends BaseListActivity implements SearchRes
 	}
 	
 	public void onResultsSucceeded(ArrayList<Tweet> result) {
-		Log.i("Piqu", "Result OK");
 		TweetListAdaptor adaptor = new TweetListAdaptor(this,
 				R.layout.list_items, result);
 		setListAdapter(adaptor);
