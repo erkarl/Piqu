@@ -36,23 +36,19 @@ public class BaseListActivity extends SherlockListActivity {
 		switch (item.getItemId()) {
 		case 1:
 			Intent tweetActivityIntent = new Intent(this, TweetActivity.class);
-			tweetActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(tweetActivityIntent);
 			break;
 		case 2:
 			Intent searchActivityIntent = new Intent(this, SearchActivity.class);
-			searchActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(searchActivityIntent);
 			break;
 		case 3:
 			Intent logoutActivityIntent = new Intent(this, LogoutActivity.class);
-			logoutActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(logoutActivityIntent);
 			break;
 		case 4:
 			Intent twitterFeedActivityIntent = new Intent(this,
 					TwitterFeedActivity.class);
-			twitterFeedActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(twitterFeedActivityIntent);
 			break;
 		}
