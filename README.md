@@ -14,7 +14,7 @@ v2.0 - Major bug fixes
 * There can no longer be multiple instances of the same activity
 * Application actually works now on 3.0+ Android (thanks to ActionBarSherlock)
 * Search queries can no longer be empty
-* All network operations have been moved outside of UI threa, into Asynctasks
+* All network operations have been moved outside of UI thread, into Asynctasks
 
 v1.0 - Basic functionality achieved
 * Auth
