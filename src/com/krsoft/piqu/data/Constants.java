@@ -28,4 +28,10 @@ public class Constants {
     public static final Integer ACTIONBAR_THIRD_ITEM = 2;
     
     public static final String INTENT_EXTRA_SEARCH_QUERY = "search_query";
+    public static final String INTENT_EXTRA_AUTH_URL = "auth_url";
+    
+    public static final String QUERY_PARAMETER_DENIED = "denied";
+    public static final String QUERY_PARAMETER_OAUTH_VERIFIER = "oauth_verifier";
+    public static final String QUERY_PARAMETER_OAUTH_TOKEN = "oauth_token";
+    
 }

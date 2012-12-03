@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity implements
 		progressDialog.dismiss();
 		mRequestToken = result;
 		Intent intent = new Intent(MainActivity.this, AuthActivity.class);
-		intent.putExtra("auth_url", mRequestToken.getAuthorizationURL());
+		intent.putExtra(Constants.INTENT_EXTRA_AUTH_URL, mRequestToken.getAuthorizationURL());
 		startActivityForResult(intent, Constants.REQ_CODE_START_AUTH);
 	}
 }

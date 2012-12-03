@@ -27,14 +27,14 @@ public class AuthActivity extends BaseActivity {
 			public void onPageFinished(WebView view, String url) {
 				if (url != null && url.startsWith(Constants.CALLBACK_URL)) {
 					Uri uri = Uri.parse(url);
-					if (uri.getQueryParameter("denied") != null) {
+					if (uri.getQueryParameter(Constants.QUERY_PARAMETER_DENIED) != null) {
 						setResult(RESULT_CANCELED);
 						finish();
 					} else {
 						String oauthToken = uri
-								.getQueryParameter("oauth_token");
+								.getQueryParameter(Constants.QUERY_PARAMETER_OAUTH_TOKEN);
 						String oauthVerifier = uri
-								.getQueryParameter("oauth_verifier");
+								.getQueryParameter(Constants.QUERY_PARAMETER_OAUTH_VERIFIER);
 						Intent intent = getIntent();
 						intent.putExtra(Constants.IEXTRA_OAUTH_TOKEN,
 								oauthToken);
@@ -46,7 +46,7 @@ public class AuthActivity extends BaseActivity {
 				}
 			}
 		});
-		webView.loadUrl(this.getIntent().getExtras().getString("auth_url"));
+		webView.loadUrl(this.getIntent().getExtras().getString(Constants.INTENT_EXTRA_AUTH_URL));
 
 	}
 
