@@ -61,20 +61,6 @@ public class TweetActivity extends BaseActivity implements
 
 	};
 
-	public boolean isLoggedIn() {
-		SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
-				MODE_PRIVATE);
-		String accessToken = pref.getString(Constants.PREF_KEY_ACCESS_TOKEN,
-				null);
-		String accessTokenSecret = pref.getString(
-				Constants.PREF_KEY_ACCESS_TOKEN_SECRET, null);
-		if (accessToken == null || accessTokenSecret == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

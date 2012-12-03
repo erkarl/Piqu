@@ -1,6 +1,7 @@
 package com.krsoft.piqu.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -53,5 +54,19 @@ public class BaseActivity extends SherlockActivity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public boolean isLoggedIn() {
+		SharedPreferences pref = getSharedPreferences(Constants.PREF_NAME,
+				MODE_PRIVATE);
+		String accessToken = pref.getString(Constants.PREF_KEY_ACCESS_TOKEN,
+				null);
+		String accessTokenSecret = pref.getString(
+				Constants.PREF_KEY_ACCESS_TOKEN_SECRET, null);
+		if (accessToken == null || accessTokenSecret == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
