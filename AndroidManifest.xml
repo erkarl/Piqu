@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name=".activity.TwitterFeedActivity"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTop" >
         </activity>
         <activity
             android:name=".activity.TweetActivity"
@@ -44,7 +44,7 @@
         </activity>
         <activity
             android:name=".activity.LogoutActivity"
-            android:launchMode="singleInstance" >
+            android:launchMode="singleTop" >
         </activity>
     </application>
 

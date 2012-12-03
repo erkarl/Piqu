@@ -22,4 +22,12 @@ public class LogoutActivity extends BaseActivity {
 		Intent mainActivityIntent = new Intent(this, MainActivity.class);
 		startActivity(mainActivityIntent);
 	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		finish();
+		Intent logoutActivityIntent = new Intent(this, LogoutActivity.class);
+		startActivity(logoutActivityIntent);
+	}
 }

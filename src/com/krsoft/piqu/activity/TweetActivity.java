@@ -2,6 +2,7 @@ package com.krsoft.piqu.activity;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import com.krsoft.piqu.util.TweetActivityResultsListener;
 public class TweetActivity extends BaseActivity implements
 		TweetActivityResultsListener {
 
+	private ProgressDialog progressDialog;
+	
 	private OnClickListener tweetButtonListener = new OnClickListener() {
 
 		@SuppressWarnings("unchecked")
@@ -49,6 +52,7 @@ public class TweetActivity extends BaseActivity implements
 					params.add(tweetText);
 					TweetActivityTask tweetActivityTask = new TweetActivityTask();
 					tweetActivityTask.setOnResultsListener(TweetActivity.this);
+					progressDialog = ProgressDialog.show(TweetActivity.this, getString(R.string.loading), getString(R.string.pleaseWait));
 					tweetActivityTask.execute(params);
 				}
 
@@ -81,11 +85,10 @@ public class TweetActivity extends BaseActivity implements
 	}
 
 	public void onResultsSucceeded() {
+		progressDialog.dismiss();
 		Toast.makeText(this, R.string.tweetSuccess, Toast.LENGTH_LONG).show();
 		Intent twitterFeedActivityIntent = new Intent(this,
 				TwitterFeedActivity.class);
-		twitterFeedActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		startActivity(twitterFeedActivityIntent);
 	}
 

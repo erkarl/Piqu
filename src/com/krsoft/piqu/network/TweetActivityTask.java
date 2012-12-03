@@ -2,9 +2,6 @@ package com.krsoft.piqu.network;
 
 import java.util.ArrayList;
 
-import com.krsoft.piqu.data.Constants;
-import com.krsoft.piqu.util.TweetActivityResultsListener;
-
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -12,6 +9,9 @@ import twitter4j.auth.AccessToken;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 import android.os.AsyncTask;
+
+import com.krsoft.piqu.data.Constants;
+import com.krsoft.piqu.util.TweetActivityResultsListener;
 
 public class TweetActivityTask extends AsyncTask<ArrayList<String>, Void, Void> {
 

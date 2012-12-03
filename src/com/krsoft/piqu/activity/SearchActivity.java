@@ -13,7 +13,7 @@ import com.krsoft.piqu.R;
 import com.krsoft.piqu.data.Constants;
 
 public class SearchActivity extends BaseActivity {
-
+	
 	private OnClickListener searchButtonListener = new OnClickListener() {
 
 		public void onClick(View v) {

@@ -2,6 +2,8 @@ package com.krsoft.piqu.activity;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -14,17 +16,13 @@ import com.krsoft.piqu.util.TwitterFeedActivityResultsListener;
 
 public class TwitterFeedActivity extends BaseListActivity implements
 		TwitterFeedActivityResultsListener {
+	
+	private ProgressDialog progressDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		displayTwitterFeed();
-	}
-
-	public void onResultsSucceeded(ArrayList<Tweet> result) {
-		TweetListAdaptor adaptor = new TweetListAdaptor(this,
-				R.layout.list_items, result);
-		setListAdapter(adaptor);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -40,12 +38,24 @@ public class TwitterFeedActivity extends BaseListActivity implements
 		params.add(accessTokenSecret);
 		TwitterFeedActivityTask tweetActivityTask = new TwitterFeedActivityTask();
 		tweetActivityTask.setOnResultsListener(TwitterFeedActivity.this);
+		progressDialog = ProgressDialog.show(TwitterFeedActivity.this, getString(R.string.loading), getString(R.string.pleaseWait));
 		tweetActivityTask.execute(params);
 	}
 	
+	public void onResultsSucceeded(ArrayList<Tweet> result) {
+		progressDialog.dismiss();
+		TweetListAdaptor adaptor = new TweetListAdaptor(this,
+				R.layout.list_items, result);
+		setListAdapter(adaptor);
+	}
+	
+	
 	@Override
-	protected void onResume() {
-		super.onResume();
-		displayTwitterFeed();
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		finish();
+		Intent twitterFeedActivityIntent = new Intent(this,
+				TwitterFeedActivity.class);
+		startActivity(twitterFeedActivityIntent);
 	}
 }

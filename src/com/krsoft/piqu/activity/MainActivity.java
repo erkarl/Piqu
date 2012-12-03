@@ -1,6 +1,7 @@
 package com.krsoft.piqu.activity;
 
 import twitter4j.auth.RequestToken;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class MainActivity extends BaseActivity implements
 		MainActivityResultsListener {
 
 	private RequestToken mRequestToken;
+	private ProgressDialog progressDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,10 +65,12 @@ public class MainActivity extends BaseActivity implements
 	private void twitterAuth() {
 		MainActivityTask mainActivityTask = new MainActivityTask();
 		mainActivityTask.setOnResultsListener(MainActivity.this);
+		progressDialog = ProgressDialog.show(MainActivity.this, getString(R.string.loading), getString(R.string.pleaseWait));
 		mainActivityTask.execute();
 	}
 
 	public void onResultsSucceeded(RequestToken result) {
+		progressDialog.dismiss();
 		mRequestToken = result;
 		Intent intent = new Intent(MainActivity.this, AuthActivity.class);
 		intent.putExtra("auth_url", mRequestToken.getAuthorizationURL());

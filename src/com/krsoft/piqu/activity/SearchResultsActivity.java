@@ -2,6 +2,7 @@ package com.krsoft.piqu.activity;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,6 +14,8 @@ import com.krsoft.piqu.network.SearchResultsActivityTask;
 import com.krsoft.piqu.util.SearchResultsActivityResultsListener;
 
 public class SearchResultsActivity extends BaseListActivity implements SearchResultsActivityResultsListener {
+	
+	private ProgressDialog progressDialog;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -30,12 +33,14 @@ public class SearchResultsActivity extends BaseListActivity implements SearchRes
 		params.add(this.getIntent().getExtras().getString(Constants.INTENT_EXTRA_SEARCH_QUERY));
 		SearchResultsActivityTask tweetActivityTask = new SearchResultsActivityTask();
 		tweetActivityTask.setOnResultsListener(SearchResultsActivity.this);
+		progressDialog = ProgressDialog.show(SearchResultsActivity.this, getString(R.string.loading), getString(R.string.pleaseWait));
 		tweetActivityTask.execute(params);
 
 		
 	}
 	
 	public void onResultsSucceeded(ArrayList<Tweet> result) {
+		progressDialog.dismiss();
 		TweetListAdaptor adaptor = new TweetListAdaptor(this,
 				R.layout.list_items, result);
 		setListAdapter(adaptor);

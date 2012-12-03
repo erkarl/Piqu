@@ -22,7 +22,7 @@ public class MainActivityAfterAuthTask extends
 		AsyncTask<TwitterAuthWrapper, Void, Void> {
 	
 	private Context context;
-
+    
 	@Override
 	protected Void doInBackground(TwitterAuthWrapper... params) {
 		TwitterAuthWrapper twitterWrapper = params[0];

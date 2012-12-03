@@ -18,5 +18,7 @@
     <string name="beforeTweetText">/@</string>
     <string name="notLoggedIn">Not authorized yet.</string>
     <string name="tweetLengthFail">Tweet cannot be longer than 140 characters.</string>
-    <string name="auth">Auth</string>
+    <string name="auth">Auth</string>
+    <string name="loading">Loading</string>
+    <string name="pleaseWait">Please wait&#8230;</string>
 </resources>
