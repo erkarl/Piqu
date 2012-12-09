@@ -13,6 +13,7 @@ import com.krsoft.piqu.R;
 import com.krsoft.piqu.data.Tweet;
 
 public class TweetListAdaptor extends ArrayAdapter<Tweet> {
+
 	private ArrayList<Tweet> tweets;
 
 	public TweetListAdaptor(Context context, int textViewResourceId,
@@ -23,16 +24,29 @@ public class TweetListAdaptor extends ArrayAdapter<Tweet> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		TweetsViewHolder viewHolder;
 		View v = convertView;
 		if (v == null) {
-			LayoutInflater vi = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater vi = (LayoutInflater) getContext().getSystemService(
+					Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.list_items, null);
+			viewHolder = new TweetsViewHolder();
+			viewHolder.tweetContent = (TextView) v.findViewById(R.id.toptext);
+			viewHolder.tweeterName = (TextView) v.findViewById(R.id.bottomtext);
+			v.setTag(viewHolder);
+		} else {
+			viewHolder = (TweetsViewHolder) v.getTag();
 		}
 		Tweet o = tweets.get(position);
-		TextView tt = (TextView) v.findViewById(R.id.toptext);
-		TextView bt = (TextView) v.findViewById(R.id.bottomtext);
-		tt.setText(o.getContent());
-		bt.setText(o.getAuthor());
+		if (o != null) {
+			viewHolder.tweetContent.setText(o.getContent());
+			viewHolder.tweeterName.setText(o.getAuthor());
+		}
 		return v;
+	}
+
+	static class TweetsViewHolder {
+		TextView tweeterName;
+		TextView tweetContent;
 	}
 }
