@@ -3,7 +3,14 @@ Piqu
 
 Really simple Twitter client application for Android
 
-v2.1 - Small tweaks
+v2.3 (upcoming)
+* The whole application will be converted to use fragments
+
+v2.2
+* Empty search result will display "No results found" instead of a black screen
+* Added a missing loading to AuthActivity's webView
+
+v2.1
 * It's no longer possible to tweet/search while logged off
 * ListView is now using a ViewHolder
 * Various loadings (progressDialogs) added
