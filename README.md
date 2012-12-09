@@ -3,6 +3,10 @@ Piqu
 
 Really simple Twitter client application for Android
 
+v2.2 
+* Added a missing loading for webView
+* Empty search result will display "No results found" instead of a black screen.
+
 v2.1 - Small tweaks
 * It's no longer possible to tweet/search while logged off
 * ListView is now using a ViewHolder
