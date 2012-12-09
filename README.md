@@ -3,6 +3,11 @@ Piqu
 
 Really simple Twitter client application for Android
 
+v2.1 - Small tweaks
+* It's no longer possible to tweet/search while logged off
+* ListView is now using a ViewHolder
+* Various loadings (progressDialogs) added
+
 v2.0 - Major bug fixes
 * Tweets can no longer be more than 140 characters nor empty
 * Created BaseActivity and BaseListActivity to prevent duplicate code
