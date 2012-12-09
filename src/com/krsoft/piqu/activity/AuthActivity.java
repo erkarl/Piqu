@@ -1,5 +1,6 @@
 package com.krsoft.piqu.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,10 +12,13 @@ import com.krsoft.piqu.R;
 import com.krsoft.piqu.data.Constants;
 
 public class AuthActivity extends BaseActivity {
+	
+	ProgressDialog progressDialog;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.twitter_auth);
+		progressDialog = ProgressDialog.show(AuthActivity.this, getString(R.string.loading), getString(R.string.pleaseWait));
 		twitterAuth();
 	}
 
@@ -25,6 +29,9 @@ public class AuthActivity extends BaseActivity {
 		webSettings.setJavaScriptEnabled(true);
 		webView.setWebViewClient(new WebViewClient() {
 			public void onPageFinished(WebView view, String url) {
+				if (progressDialog.isShowing() && progressDialog != null) {
+					progressDialog.dismiss();
+				}
 				if (url != null && url.startsWith(Constants.CALLBACK_URL)) {
 					Uri uri = Uri.parse(url);
 					if (uri.getQueryParameter(Constants.QUERY_PARAMETER_DENIED) != null) {
@@ -46,7 +53,8 @@ public class AuthActivity extends BaseActivity {
 				}
 			}
 		});
-		webView.loadUrl(this.getIntent().getExtras().getString(Constants.INTENT_EXTRA_AUTH_URL));
+		webView.loadUrl(this.getIntent().getExtras()
+				.getString(Constants.INTENT_EXTRA_AUTH_URL));
 
 	}
 
