@@ -3,6 +3,9 @@ Piqu
 
 Really simple Twitter client application for Android
 
+Upcoming:
+Convert all activities into fragments.
+
 v2.2 
 * Added a missing loading for webView
 * Empty search result will display "No results found" instead of a black screen.
