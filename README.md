@@ -1,7 +1,7 @@
 Piqu
 ====
 
-Really simple Twitter client application for Android
+Really simple Twitter client application for Android.
 
 Upcoming:
 Convert all activities into fragments.
